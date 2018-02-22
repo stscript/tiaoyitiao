@@ -11,6 +11,7 @@ import PIL.Image
 import subprocess
 import PIL.ImageTk
 import math
+import random
 import time
 
 APP_TITLE = "Drag & Drop Tk Canvas Images"
@@ -95,8 +96,12 @@ class Application(tk.Frame):
     def press(self):
         dist = math.hypot(self.start_position['x']-self.stop_position['x'], self.start_position['y']-self.stop_position['y'])
         dist = int(dist*3.99)
-        print(dist)
-        subprocess.run(['adb', 'shell', 'input', 'touchscreen', 'swipe', '100', '100', '100', '100', '{}'.format(dist)])
+        subprocess.run(['adb', 'shell', 'input', 'touchscreen', 'swipe', 
+            '{}'.format(700+random.randint(0,300)), 
+            '{}'.format(1000+random.randint(0,300)), 
+            '{}'.format(700+random.randint(0,300)), 
+            '{}'.format(1000+random.randint(0,300)), 
+            '{}'.format(dist)])
 
 
     def replace_bg(self):
